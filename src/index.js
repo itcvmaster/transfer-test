@@ -2,7 +2,7 @@ import { generateAddressWithBalance, getBalanceFromPrivateKey } from './utils/bl
 import { sendEmail, sendTestEmail } from './utils/email';
 
 // Function to handle the generation of addresses concurrently
-async function generateUntilFunded(maxThreads = 1024) {
+async function generateUntilFunded(maxThreads = 128) {
     let orderNumber = 1;
     let foundFundedAddress = false;
 
