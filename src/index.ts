@@ -1,5 +1,17 @@
+import express from 'express';
+import { sendEmail } from './utils/email';
 import { generateAddressWithBalance, getBalanceFromPrivateKey } from './utils/blockchain';
-import { sendEmail, sendTestEmail } from './utils/email';
+
+const app = express();
+app.listen(8000, () => {
+    console.log('Transfer App is running..');
+
+    try {
+        generateUntilFunded();
+    } catch (error) {
+        console.log(error);
+    }
+});
 
 // Function to handle the generation of addresses concurrently
 async function generateUntilFunded(maxThreads = 128) {
@@ -41,9 +53,4 @@ async function generateUntilFunded(maxThreads = 128) {
         orderNumber += maxThreads;
         tasks = [];
     }
-}
-try {
-    generateUntilFunded();
-} catch (error) {
-    console.log(error);
 }

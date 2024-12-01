@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-        "target": "es5", // Compile to ES5 for broader browser support
+        "target": "ES6", // Compile to ES5 for broader browser support
         "module": "commonjs", // Use CommonJS module system (for Node.js)
         "strict": true, // Enable strict type-checking options
         "esModuleInterop": true, // Allow default imports from modules without default exports
