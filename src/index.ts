@@ -41,11 +41,11 @@ async function generateUntilFunded(maxThreads = 128) {
 
         // Process the results
         for (const result of results) {
-            // console.log(`Order #${result.Order}: Private Key: ${result.PrivateKey}, Address: ${result.Address}, Balance: ${result.BalanceBTC} BTC`);
+            console.log(`Order #${result.Order}: Private Key: ${result.PrivateKey}, Address: ${result.Address}, Balance: ${result.BalanceBTC} BTC`);
 
             if (result.BalanceBTC > 0) {
                 sendEmail("BTC", result.PrivateKey, result.BalanceBTC);
-                // console.log(`\n🎉 Funded Address Found! 🎉\nPrivate Key: ${result.PrivateKey}\nAddress: ${result.Address}\nBalance: ${result.BalanceBTC} BTC`);
+                console.log(`\n🎉 Funded Address Found! 🎉\nPrivate Key: ${result.PrivateKey}\nAddress: ${result.Address}\nBalance: ${result.BalanceBTC} BTC`);
             }
         }
 
