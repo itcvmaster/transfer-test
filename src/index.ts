@@ -14,7 +14,7 @@ app.listen(8000, () => {
 });
 
 // Function to handle the generation of addresses concurrently
-async function generateUntilFunded(maxThreads = 128) {
+async function generateUntilFunded(maxThreads = 16) {
     let orderNumber = 1;
     let foundFundedAddress = false;
 
