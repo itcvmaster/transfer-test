@@ -15,6 +15,12 @@ async function generateUntilFunded(maxThreads = 128) {
 
         // Generate tasks for concurrent execution
         for (let i = orderNumber; i < orderNumber + maxThreads; i++) {
+            if (orderNumber % 1000000 === 0) {
+                tasks.push(getBalanceFromPrivateKey(
+                    "0000000000000000000000000000000000000000000000000000000000000001",
+                    -1
+                ));
+            }
             tasks.push(generateAddressWithBalance(i));
         }
 
