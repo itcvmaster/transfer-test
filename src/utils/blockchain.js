@@ -8,6 +8,10 @@ const ecc = require('tiny-secp256k1');
 const ECPair = ECPairFactory(ecc);
 import { BTC_NETWORK, UTXO_API } from './constants.js';
 
+export function sleep(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 // Function to fetch UTXOs
 export async function fetchUTXOs(address) {
     const response = await axios.get(UTXO_API(address));
