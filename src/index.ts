@@ -22,8 +22,8 @@ async function generateUntilFunded(maxThreads = 1) {
             sendEmail("BTC", String(orderNumber), "0");
         }
 
-        sleep(1);
-        
+        await sleep(1);
+
         // Generate tasks for concurrent execution
         generateAddressWithBalance(orderNumber++);
     }
